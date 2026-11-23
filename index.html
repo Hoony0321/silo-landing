@@ -544,6 +544,31 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-ite
 // __MODEL__, __WIRELESS__, __QTY__ 자리에 고른 값이 들어갑니다.
 const ORDER_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSc75woFIjS1sFOfFljFns5LSZNbdEBHwyZRwFaAfkscI1dAhA/viewform?usp=pp_url&entry.1587425912=__MODEL__&entry.1252156288=__WIRELESS__&entry.164824293=__QTY__";
 
+// 유입 경로 기록: 주문서에 "유입 경로" 짧은 답변 항목을 만들면 그 entry 번호를 넣으세요 (예: "entry.123456789").
+// 비워 두면 유입 경로를 "구성" 칸 끝에 붙여서 보냅니다.
+const SOURCE_ENTRY = "";
+
+// 광고 링크의 utm 값(또는 다른 사이트에서 넘어온 경우 그 주소)을 첫 방문 기준으로 기억합니다.
+const visitSource = (() => {
+  const p = new URLSearchParams(location.search);
+  let src = "";
+  if (p.get("utm_source")) {
+    src = [p.get("utm_source"), p.get("utm_medium"), p.get("utm_campaign"), p.get("utm_content")].filter(Boolean).join(" / ");
+  } else if (p.get("gclid")) {
+    src = "google / cpc";
+  } else if (document.referrer) {
+    try {
+      const host = new URL(document.referrer).hostname;
+      if (host && host !== location.hostname) src = "referral / " + host;
+    } catch (e) {}
+  }
+  try {
+    if (src) { if (!localStorage.getItem("silo_src")) localStorage.setItem("silo_src", src); }
+    else src = localStorage.getItem("silo_src") || "";
+  } catch (e) {}
+  return (src || "direct").slice(0, 120);
+})();
+
 const BASE_PRICE = 1450000; // 기본 구성: 메모리 32GB · SSD 512GB
 const won = (n) => n.toLocaleString("ko-KR") + "원";
 const qtyInput = document.getElementById("cfg-qty");
@@ -569,10 +594,13 @@ function render() {
   document.getElementById("sum-total").textContent = won(total);
   document.getElementById("sum-vat").textContent = "부가세 포함 " + won(Math.round(total * 1.1));
   if (ORDER_FORM_URL) {
-    orderBtn.href = ORDER_FORM_URL
-      .replace("__MODEL__", encodeURIComponent(s.model))
+    const modelText = SOURCE_ENTRY ? s.model : s.model + " · 유입: " + visitSource;
+    let href = ORDER_FORM_URL
+      .replace("__MODEL__", encodeURIComponent(modelText))
       .replace("__WIRELESS__", encodeURIComponent(s.wireless))
       .replace("__QTY__", encodeURIComponent(String(s.qty)));
+    if (SOURCE_ENTRY) href += "&" + SOURCE_ENTRY + "=" + encodeURIComponent(visitSource);
+    orderBtn.href = href;
   } else {
     orderBtn.removeAttribute("target");
     orderBtn.href = "#buy";
