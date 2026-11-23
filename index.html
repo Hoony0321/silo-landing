@@ -449,15 +449,15 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-ite
       <aside class="summary" aria-live="polite">
         <span class="label-s">주문 요약</span>
         <dl>
-          <dt>기본 구성</dt><dd>1,300,000원</dd>
+          <dt>기본 구성</dt><dd>1,450,000원</dd>
           <dt>메모리</dt><dd id="sum-ram">32GB</dd>
           <dt>저장 용량</dt><dd id="sum-model">SSD 512GB</dd>
           <dt>무선 모듈</dt><dd id="sum-wireless">비활성화</dd>
           <dt>수량</dt><dd id="sum-qty">1대</dd>
         </dl>
         <div class="total">
-          <div><span>합계 (부가세 별도)</span><b id="sum-total">1,300,000원</b></div>
-          <p id="sum-vat">부가세 포함 1,430,000원</p>
+          <div><span>합계 (부가세 별도)</span><b id="sum-total">1,450,000원</b></div>
+          <p id="sum-vat">부가세 포함 1,595,000원</p>
         </div>
         <a class="btn btn-primary btn-lg" id="orderBtn" href="#" target="_blank" rel="noopener">구매 신청하기</a>
         <p class="fine-left">신청 후 영업일 기준 1일 안에 담당자가 연락드립니다. 결제는 견적 확인 후 진행됩니다.</p>
@@ -530,7 +530,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-ite
 // __MODEL__, __WIRELESS__, __QTY__ 자리에 고른 값이 들어갑니다.
 const ORDER_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSe-W0Spv-zT7Au0GwTYxMWonpvN-nLmqEQetWBBr6qn7gZ0IQ/viewform?usp=pp_url&entry.1482271272=__MODEL__&entry.593398019=__WIRELESS__&entry.1307462158=__QTY__";
 
-const BASE_PRICE = 1300000; // 기본 구성: 메모리 32GB · SSD 512GB
+const BASE_PRICE = 1450000; // 기본 구성: 메모리 32GB · SSD 512GB
 const won = (n) => n.toLocaleString("ko-KR") + "원";
 const qtyInput = document.getElementById("cfg-qty");
 const orderBtn = document.getElementById("orderBtn");
