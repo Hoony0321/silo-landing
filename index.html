@@ -394,7 +394,17 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-ite
     <div class="shop">
       <div class="config">
         <fieldset class="opt-group">
-          <legend>1. 저장 용량</legend>
+          <legend>1. 메모리와 AI 모델</legend>
+          <div class="opts opts-2">
+            <label class="opt"><input type="radio" name="cfg-ram" id="cfg-ram-32" value="32" data-add="0" data-name="32GB" checked>
+              <span class="opt-body"><b>32GB 메모리</b><span>gpt-oss-20b 탑재. 요약, 초안 작성, 번역 같은 일상 업무에 충분</span><em>기본</em></span></label>
+            <label class="opt"><input type="radio" name="cfg-ram" id="cfg-ram-64" value="64" data-add="300000" data-name="64GB">
+              <span class="opt-body"><b>64GB 메모리</b><span>더 정밀한 30B급 모델 탑재. 긴 문서를 한 번에 다루고, 여럿이 함께 써도 여유</span><em>+300,000원</em></span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="opt-group">
+          <legend>2. 저장 용량</legend>
           <div class="opts opts-2">
             <label class="opt"><input type="radio" name="cfg-storage" id="cfg-512" value="512" data-price="1300000" data-name="SILO 512 (SSD 512GB)">
               <span class="opt-body"><b>SILO 512</b><span>SSD 512GB · 개인 또는 소규모 팀</span><em>1,300,000원</em></span></label>
@@ -404,7 +414,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-ite
         </fieldset>
 
         <fieldset class="opt-group">
-          <legend>2. 무선 모듈 처리</legend>
+          <legend>3. 무선 모듈 처리</legend>
           <div class="opts opts-3">
             <label class="opt"><input type="radio" name="cfg-wireless" id="cfg-wl-off" value="off" data-name="소프트웨어로 비활성화" checked>
               <span class="opt-body"><b>비활성화</b><span>Wi-Fi·Bluetooth를 끈 상태로 출고</span><em>추가 비용 없음</em></span></label>
@@ -416,7 +426,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-ite
         </fieldset>
 
         <div class="opt-group">
-          <span class="legend" id="qty-label">3. 수량</span>
+          <span class="legend" id="qty-label">4. 수량</span>
           <div class="qty" role="group" aria-labelledby="qty-label">
             <button type="button" id="qty-minus" aria-label="수량 줄이기">−</button>
             <input id="cfg-qty" type="number" min="1" max="50" value="1" inputmode="numeric" aria-label="수량">
@@ -428,8 +438,8 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-ite
         <div class="incl">
           <b>모든 구성에 포함</b>
           <ul class="checks">
-            <li>AMD Ryzen 7 8745H · 32GB DDR5 메모리</li>
-            <li>20B급 AI 모델과 채팅 화면 설치 완료</li>
+            <li>AMD Ryzen 7 8745H (8코어) 프로세서</li>
+            <li>메모리에 맞는 AI 모델과 채팅 화면 설치 완료</li>
             <li>저장 장치 전체 암호화 · 최소 구성 Linux</li>
             <li>전원 어댑터 · LAN 케이블 · 사용 설명서</li>
           </ul>
@@ -439,7 +449,8 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-ite
       <aside class="summary" aria-live="polite">
         <span class="label-s">주문 요약</span>
         <dl>
-          <dt>구성</dt><dd id="sum-model">SILO 1TB</dd>
+          <dt>메모리</dt><dd id="sum-ram">32GB</dd>
+          <dt>저장 용량</dt><dd id="sum-model">SILO 1TB</dd>
           <dt>무선 모듈</dt><dd id="sum-wireless">비활성화</dd>
           <dt>수량</dt><dd id="sum-qty">1대</dd>
         </dl>
@@ -456,10 +467,10 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-ite
       <table class="spec">
         <caption>상세 사양</caption>
         <tr><th>본체</th><td>MINISFORUM UM870 Slim 미니PC · 130 × 126.5 × 50.4mm · 0.67kg</td></tr>
-        <tr><th>프로세서 · 메모리</th><td>AMD Ryzen 7 8745H (8코어) · 32GB DDR5 (16GB × 2)</td></tr>
+        <tr><th>프로세서 · 메모리</th><td>AMD Ryzen 7 8745H (8코어) · DDR5 32GB (16GB × 2) 또는 64GB (32GB × 2)</td></tr>
         <tr><th>운영체제</th><td>Linux (최소 구성)</td></tr>
-        <tr><th>AI 모델</th><td>Ollama 기반 20B급 오픈 모델 (gpt-oss-20b 또는 Qwen3-30B-A3B 계열 중 용도에 맞게 설치)</td></tr>
-        <tr><th>권장 사용 인원</th><td>동시 2~3명. 한 명이 쓸 때 가장 빠릅니다.</td></tr>
+        <tr><th>AI 모델</th><td>32GB: gpt-oss-20b · 64GB: Qwen3-30B-A3B 등 30B급 모델을 더 높은 정밀도로 설치 (Ollama 기반)</td></tr>
+        <tr><th>권장 사용 인원</th><td>동시 2~3명 (64GB는 여럿이 써도 더 여유 있음). 한 명이 쓸 때 가장 빠릅니다.</td></tr>
         <tr><th>연결 방식</th><td>2.5GbE 유선 LAN · 웹 브라우저로 접속</td></tr>
       </table>
     </div>
@@ -525,15 +536,17 @@ const orderBtn = document.getElementById("orderBtn");
 function state() {
   const st = document.querySelector('input[name="cfg-storage"]:checked');
   const wl = document.querySelector('input[name="cfg-wireless"]:checked');
+  const ram = document.querySelector('input[name="cfg-ram"]:checked');
   let q = parseInt(qtyInput.value, 10);
   if (!Number.isFinite(q) || q < 1) q = 1;
   if (q > 50) q = 50;
-  return { model: st.dataset.name, short: st.closest("label").querySelector("b").firstChild.textContent.trim(), price: +st.dataset.price, wireless: wl.dataset.name, wlShort: wl.closest("label").querySelector("b").textContent, qty: q };
+  return { model: st.dataset.name + " · 메모리 " + ram.dataset.name, ram: ram.dataset.name, short: st.closest("label").querySelector("b").firstChild.textContent.trim(), price: +st.dataset.price + +ram.dataset.add, wireless: wl.dataset.name, wlShort: wl.closest("label").querySelector("b").textContent, qty: q };
 }
 
 function render() {
   const s = state();
   const total = s.price * s.qty;
+  document.getElementById("sum-ram").textContent = s.ram;
   document.getElementById("sum-model").textContent = s.short;
   document.getElementById("sum-wireless").textContent = s.wlShort;
   document.getElementById("sum-qty").textContent = s.qty + "대";
@@ -551,7 +564,7 @@ function render() {
   }
 }
 
-document.querySelectorAll('input[name="cfg-storage"], input[name="cfg-wireless"]').forEach((el) => el.addEventListener("change", render));
+document.querySelectorAll('input[name="cfg-ram"], input[name="cfg-storage"], input[name="cfg-wireless"]').forEach((el) => el.addEventListener("change", render));
 qtyInput.addEventListener("input", render);
 qtyInput.addEventListener("change", () => { qtyInput.value = state().qty; render(); });
 document.getElementById("qty-minus").addEventListener("click", () => { qtyInput.value = Math.max(1, state().qty - 1); render(); });
