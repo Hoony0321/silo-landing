@@ -1,6 +1,13 @@
 <!doctype html>
 <html lang="ko">
 <head>
+<!-- Google tag (Google Ads) -->
+<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MGLG59DG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
@@ -651,6 +658,11 @@ qtyInput.addEventListener("input", render);
 qtyInput.addEventListener("change", () => { qtyInput.value = state().qty; render(); });
 document.getElementById("qty-minus").addEventListener("click", () => { qtyInput.value = Math.max(1, state().qty - 1); render(); });
 document.getElementById("qty-plus").addEventListener("click", () => { qtyInput.value = Math.min(50, state().qty + 1); render(); });
+orderBtn.addEventListener("click", () => {
+  if (!ORDER_FORM_URL) return;
+  const s = state();
+  window.dataLayer.push({ event: "order_click", value: s.price * s.qty, currency: "KRW", source: visitSource });
+});
 render();
 </script>
 </body>
